@@ -77,13 +77,30 @@ const Mutation = new GraphQLObjectType({
     addAuthor: {
       type: AuthorType,
       args: { name: { type: GraphQLString }, age: { type: GraphQLInt } },
-      resolve(parent,args){
-          let author= new Author({
-              name:args.name,
-              age:args.age
-          })
-          return author.save()
-      }
+      resolve(parent, args) {
+        let author = new Author({
+          name: args.name,
+          age: args.age,
+        });
+        return author.save();
+      },
+    },
+
+    addBook: {
+      type: BookType,
+      args: {
+        genre: { type: GraphQLString },
+        authorId: { GraphQLID },
+        name: { GraphQLString },
+      },
+      resolve(parent, args) {
+        let book = new Books({
+          name: args.name,
+          genre: args.genre,
+          authorId: args.authorId,
+        });
+        return book.save();
+      },
     },
   },
 });
