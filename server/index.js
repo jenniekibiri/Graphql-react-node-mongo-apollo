@@ -15,7 +15,7 @@ mongoose.connection.once("open", () => {
   console.log("db connected");
 });
 app.use(morgan('dev'))
-app.use('/graphl',graphl(
+app.use('/graphql',graphl(
   {  schema,
     graphiql: true}
 ))
