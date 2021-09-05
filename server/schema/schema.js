@@ -7,6 +7,7 @@ const {
   GraphQLString,
   GraphQLInt,
   GraphQLList,
+  GraphQLNonNull,
   GraphQLSchema,
 } = require("graphql/type");
 const Author = require("../models/author");
@@ -55,6 +56,7 @@ const RootQuery = new GraphQLObjectType({
             return Book.find({});
         }
     },
+    
     author: {
       type: AuthorType,
       args: { id: { type: GraphQLID } },
@@ -76,8 +78,11 @@ const Mutation = new GraphQLObjectType({
   fields: {
     addAuthor: {
       type: AuthorType,
-      args: { name: { type: GraphQLString }, age: { type: GraphQLInt } },
-      resolve(parent, args) {
+      args: { name: { type: GraphQLString }, age: { type: GraphQLInt } }, args: {
+        name: { type: new GraphQLNonNull(GraphQLString) },
+        genre: { type: new GraphQLNonNull(GraphQLString) },
+        authorId: { type: new GraphQLNonNull(GraphQLID) }
+    },   resolve(parent, args) {
         let author = new Author({
           name: args.name,
           age: args.age,
