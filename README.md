@@ -1,4 +1,32 @@
 # Graphql-react-node-mongo-apollo
+A full stack bookstore application 
+
+Nodejs
+
+Graphql
+
+MongoDB
+
+React
+
+Apollo client
+
+How to run cd client
+
+npm install
+
+npm start
+
+
+cd server
+
+npm install
+
+npm start
+
+
+
+
 
 graphql basics
 chrome graphiql tool
